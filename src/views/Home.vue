@@ -1,5 +1,5 @@
 <template>
-	<div id="os-container">
+	<div id="osContainer">
 		<os-search/>
 		<os-content/>
 	</div>
@@ -11,7 +11,10 @@ import oscontent from "../components/os-Content"
 import ossearch from "../components/os-Search"
 
 export default {
-name: 'Home',
+	// props : {
+
+	// }
+	name: 'Home',
 	components : {
 		"os-content" : oscontent,
 		"os-search" : ossearch
@@ -20,7 +23,9 @@ name: 'Home',
 </script>
 
 <style scoped>
-#os-container {
-	widows: 80%;
+#osContainer {
+	border: 1px solid black;
+	width: fit-content;
+	margin: auto;
 }
 </style>
