@@ -1,19 +1,25 @@
 <template>
 	<div id="osContainer">
-		<os-search/>
-		<os-content/>
+		<os-search @osSearch="getRepos"/>
+		<os-content :repos="repos"/>
 	</div>
 </template>
 
 <script>
 // @ is an alias to /src
-import oscontent from "../components/os-Content"
-import ossearch from "../components/os-Search"
+import oscontent from "@/components/os-Content"
+import ossearch from "@/components/os-Search"
 
 export default {
-	// props : {
-
-	// }
+	props: {
+        "repos" : {
+            type : Array,
+            required: false
+		},
+		"getRepos" : {
+			type : Function,
+		}
+    },
 	name: 'Home',
 	components : {
 		"os-content" : oscontent,

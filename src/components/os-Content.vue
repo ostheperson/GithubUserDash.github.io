@@ -6,7 +6,7 @@
             <div >stars</div>
             <!-- <div class="os-content-item">forks</div> -->
         </div>
-        <!-- <div class="os-content" v-for="(value, repo, index) in repos" :key="index">
+        <div class="os-content" v-for="(value, repo, index) in repos" :key="index">
             <a class="os-link os-content-item" :href="value.url">
                 <p class="os-name">
                     {{ value.name }}
@@ -16,12 +16,12 @@
             <div class="os-content-item os-description">{{ value.description }}</div>
             <div class="os-content-item os-stars">{{ value.stars }}</div>
             <div class="os-content-item os-stars">{{ value.forks }}</div>
-        </div> -->
-        <div class="os-content">
+        </div>
+        <!-- <div class="os-content">
             <a class="os-link"><div class="os-content-item os-name">Name of Repo</div></a>
             <div class="os-content-item os-description">Dsecroinevev rvre vreve rvewvjwbvweb wv eivuw vw viwvwuv  reovoiernv</div>
             <div class="os-content-item os-stars">400 stars</div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -31,14 +31,13 @@ export default {
     props: {
         "repos" : {
             type : Array,
-            required: true
+            required: false
         }
     },
 }
 </script>
 
 <style scoped>
-
 div .os-content-heading {
     background-color:inherit;
     font-weight: bolder;

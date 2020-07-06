@@ -16,7 +16,7 @@ export default {
 	props: {
         "exist" : {
             type : Boolean,
-            required: true
+            required: false
         }
     },
 	data () {

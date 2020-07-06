@@ -9,8 +9,6 @@
 </template>
 
 <script>
-
-
 export default {
 	data () {
 		return {
@@ -31,6 +29,7 @@ export default {
 
 			let data = await response.json();
 			let res = data
+
 			this.user.name = res.html_url
 			this.user.avatar = res.avatar_url
 
