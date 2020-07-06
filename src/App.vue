@@ -42,7 +42,7 @@ export default {
 			data = await response.json();
 			res = data
 
-			let objj = {}
+			let objj = []
 			objj.forEach((item) => {
 				let repo = {}
 				repo["name"] = item.name
@@ -51,7 +51,10 @@ export default {
 				repo["forks"] = item.forks
 				repo["name"] = item.name
 				repo["url"] = item.html_url
+				repo["forked"] = item.fork
+				objj.push(repo)
 			})
+			this.repos = objj
 		}
 	}
 }
