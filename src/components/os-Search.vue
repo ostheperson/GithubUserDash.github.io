@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<b-form @submit.prevent="onSubmit()" @reset="onReset()" id="osForm"> 
-			<label class="sr-only os-form-items" for="inline-form-input-username" description="Make sure to not misspell usernames">Username</label>
-			<b-input-group prepend="@" class="mb-2 mr-sm-3 mb-sm-0 os-form-items os-form-input">
+			<!-- <label class="sr-only os-form-items" for="inline-form-input-username" description="Make sure to not misspell usernames">Username</label> -->
+			<b-input-group  prepend="@" class="mb-2 mr-sm-3 mb-sm-0 os-form-items os-form-input">
 				<b-input v-model.lazy="form.username" class="os-input" :state="exist" id="inline-form-input-username" placeholder="Username" name="username"></b-input>
 			</b-input-group>
 			<b-button id="os-button" class="mb-2 mr-sm-3 mb-sm-0 os-form-items" variant="outline-dark" type="submit" ><b-icon icon="search"></b-icon></b-button>
@@ -34,7 +34,6 @@ export default {
 			}else {
 				this.$emit("osSearch", this.form.username)
 			}
-			
 			//console.log(username)
 		},
 		onReset() {
@@ -49,16 +48,14 @@ export default {
 <style scoped>
 #osForm {
 	display: flex;
-	width: 80%;
-	min-width: 70%;
+	width: fit-content;
 	margin: auto;
 	margin-bottom: 50px;
-	max-height: 50px;
+	min-height: 40px;
 	justify-content: center;
 }
 
 .os-input {
-	width: 100%;
 	height: 100%;
 }
 
@@ -67,7 +64,7 @@ export default {
 }
 
 .os-form-input {
-	flex: 1.5;
+	flex: 2;
 	flex-grow: 3;
 }
 </style>
