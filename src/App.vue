@@ -10,52 +10,7 @@
 
 <script>
 export default {
-	data () {
-		return {
-			user : {},
-			repos : []
-		}
-	},
-	methods : {
-		async getRepos (username) {
-			let api_url = 'https://api.github.com/users/'
-			const header = {
-				"Authorization" :`Token 798563c74f165541177a65ff6e31fbe479c8c4af`
-			}
-			let response = await fetch(api_url + username, {
-				"method": 'GET',
-				"headers" : header
-			});
-
-			let data = await response.json();
-			let res = data
-
-			this.user.name = res.html_url
-			this.user.avatar = res.avatar_url
-
-			api_url = 'https://api.github.com/users/' + username + "/repos"
-			response = await fetch(api_url, {
-				"method": 'GET',
-				"headers" : header
-			});
-			data = await response.json();
-			res = data
-
-			let objj = []
-			objj.forEach((item) => {
-				let repo = {}
-				repo["name"] = item.name
-				repo["url"] = item.html_url
-				repo["description"] = item.description
-				repo["forks"] = item.forks
-				repo["name"] = item.name
-				repo["url"] = item.html_url
-				repo["forked"] = item.fork
-				objj.push(repo)
-			})
-			this.repos = objj
-		}
-	}
+	
 }
 </script>
 
