@@ -26,6 +26,7 @@ export default {
 	methods : {
 		clear () {
 			this.repos = []
+			this.searched = false
 		},
 		async getRepos (username) {
 			let api_url = 'https://api.github.com/users/'

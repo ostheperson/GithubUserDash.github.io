@@ -3,12 +3,11 @@
 		<os-search @osSearch="search" @clear="clear" :exist="exist"/>
 		<div v-show="searched">
 			<os-profile :user="user"/>
-			<div>
+			<div v-show="repos.length > 0">
 				<div class="os-content os-content-heading">
 					<div class="os-name">projects</div>
 					<div class="os-description">description</div>
 					<div >stars</div>
-					<!-- <div class="os-content-item">forks</div> -->
 				</div>
 				<div class="os-content" v-for="(value, repo, index) in repos" :key="index">
 					<router-link :to="{ name : 'repo', params: { repo : value }}" class= "os-content-item os-link ">
@@ -26,17 +25,17 @@
 					<div class="os-content-item os-stars">400 stars</div>
 				</div> -->
 			</div>
-			<footer>
+			<footer v-show="repos.length > 0">
 				<p class="footer">Key <em>*</em> => forked repository</p>
 			</footer>
 		</div>
 		
-		<!-- <div v-show="!searched">
+		<div v-show="!searched">
 			<h5>Enter a Github username</h5>
 		</div>
 		<div v-show="!exist">
 			<h6>Have you entered a valid username?</h6>
-		</div> -->
+		</div>
 		
 	</div>
 </template>
