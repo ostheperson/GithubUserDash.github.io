@@ -105,7 +105,6 @@ div .os-content-heading {
     padding:10px;
     margin: 10px;
     min-width: 500px;
-    /* width: 80%; */
     justify-content: space-between;
     border-radius: 5px;
     background-color: rgb(220, 233, 255);
@@ -128,6 +127,8 @@ div.os-content-item {
     align-self: center;
     /* border-radius: 5px; */
     color:#1db94c;
+	text-decoration-line: none;
+	transition: font-weight .7s;
 }
 .os-content .os-link:hover {
     font-weight: bolder;

@@ -136,6 +136,7 @@ div img {
 div a{
 	text-decoration-line: none;
 	color:#42b983;
+	transition: font-weight .3s;
 }
 div a:hover{
 	font-weight: bolder;
@@ -144,16 +145,16 @@ div a:hover{
 	display: flex;
 	justify-content: space-around;
 	margin: auto;
+	background-color: #DCE9FF;
+	border-radius: 5px;
 }
 span.logo-name {
 	margin: 0px 10px;
 }
 .os-icon-item {
-	background-color: #DCE9FF;
 	display: flex;
 	padding: 7px 5px 0px 5px;
 	justify-content: space-around;
-	border-radius: 5px;
 }
 .logoName {
 	margin: 0px 10px;
