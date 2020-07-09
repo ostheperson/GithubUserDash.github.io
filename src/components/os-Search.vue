@@ -30,9 +30,11 @@ export default {
 		onSubmit() {
 			//this.getRepos(this.form.username)
 			if (this.form.username == ""){
+				this.exist = false
 				alert("Input box is empty, enter a username to see repositories")
 			}else {
-				this.$emit("osSearch", this.form.username)
+				let usrname = this.form.username
+				this.$emit("osSearch", usrname)
 			}
 			//console.log(username)
 		},

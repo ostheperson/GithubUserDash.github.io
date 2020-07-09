@@ -1,97 +1,91 @@
 <template>
 	<div id="osContainer">
-		<os-search @osSearch="getRepos" @clear="clear" :exist="exist"/>
+		<os-search @osSearch="search" @clear="clear" :exist="exist"/>
 		<div v-show="searched">
-			<os-profile :user = "user"/>
-			<os-content :repos="repos"/>
+			<os-profile :user="user"/>
+			<div>
+				<div class="os-content os-content-heading">
+					<div class="os-name">projects</div>
+					<div class="os-description">description</div>
+					<div >stars</div>
+					<!-- <div class="os-content-item">forks</div> -->
+				</div>
+				<div class="os-content" v-for="(value, repo, index) in repos" :key="index">
+					<router-link :to="{ name : 'repo', params: { repo : value }}" class= "os-content-item os-link ">
+						<p class="os-name">
+							{{ value.name }}
+							<em v-if="value.forked">*</em>
+						</p>
+					</router-link>
+					<div class="os-content-item os-description">{{ value.description }}</div>
+					<div class="os-content-item os-stars">{{ value.stars }}</div>
+				</div>
+				<!-- <div class="os-content">
+					<a class="os-link"><div class="os-content-item os-name">Name of Repo</div></a>
+					<div class="os-content-item os-description">Dsecroinevev rvre vreve rvewvjwbvweb wv eivuw vw viwvwuv  reovoiernv</div>
+					<div class="os-content-item os-stars">400 stars</div>
+				</div> -->
+			</div>
+			<footer>
+				<p class="footer">Key <em>*</em> => forked repository</p>
+			</footer>
 		</div>
-		<div v-show="!searched">
+		
+		<!-- <div v-show="!searched">
 			<h5>Enter a Github username</h5>
 		</div>
 		<div v-show="!exist">
 			<h6>Have you entered a valid username?</h6>
-		</div>
+		</div> -->
+		
 	</div>
 </template>
 
 <script>
 // @ is an alias to /src
-import oscontent from "@/components/os-Content"
+
 import ossearch from "@/components/os-Search"
-import osprofile from "@/components/user"
+import osprofile from "@/components/User"
 
 export default {
 	name: 'Home',
+	props: {
+		"exist" : {
+			type: Boolean
+		},
+		"repos" : {
+			type: Array
+		},
+		"searched" : {
+			type: Boolean
+		},
+		"user" : {
+			type: Object
+		}
+	},
 	components : {
-		"os-content" : oscontent,
 		"os-search" : ossearch,
-		"os-profile" : osprofile
+		"os-profile" : osprofile,
 	},
 	data () {
 		return {
-			user : {},
-			repos : [],
-			exist : true,
-			searched : false
+			
+		}
+	}, 
+	methods: {
+		search(usrname) {
+			this.$emit("search", usrname)
+			
+		},
+		clear() {
+			this.$emit("clear")
 		}
 	},
-	methods : {
-		clear () {
-			this.repos = []
-		},
-		async getRepos (username) {
-			let api_url = 'https://api.github.com/users/'
-			// const header = {
-			// 	"Authorization" :`Token 798563c74f165541177a65ff6e31fbe479c8c4af`
-			// }
-			let response = await fetch(api_url + username);
-			if (response.status == 404){
-				this.exist = false
-				return 1
-			}
-			this.exist = true
-			
-
-			let data = await response.json();
-			let res = data
-			
-			this.user["name"] = res.name
-			this.user["url"] = res.html_url
-			this.user["avatar"] = res.avatar_url
-			api_url = 'https://api.github.com/users/' + username + "/repos"
-			response = await fetch(api_url);
-
-			// response = await fetch(api_url, {
-			// 	"method": 'GET',
-			// 	"headers" : header
-			// });
-
-			if (response.status == 404){
-				this.exist = false
-				return 1
-			}
-			this.exist = true
-			data = await response.json();
-			res = data
-
-			let objj = []
-			res.forEach((item) => {
-				let repo = {}
-				repo["name"] = item.name
-				repo["url"] = item.html_url
-				repo["description"] = item.description
-				repo["forks"] = item.forks
-				repo["name"] = item.name
-				repo["url"] = item.html_url
-				repo["forked"] = item.fork
-				objj.push(repo)
-				
-			})
-			this.repos = objj
-			this.searched = true
-			//console.log(objj)
-		}
-	}
+	// watch: {
+	// 	logger () {
+	// 		console.log()
+	// 	}
+	// }
 }
 </script>
 
@@ -99,5 +93,47 @@ export default {
 #osContainer {
 	width: fit-content;
 	margin: auto;
+}
+
+div .os-content-heading {
+    background-color:inherit;
+    font-weight: bolder;
+}
+
+.os-content {
+    display: flex;
+    padding:10px;
+    margin: 10px;
+    min-width: 500px;
+    /* width: 80%; */
+    justify-content: space-between;
+    border-radius: 5px;
+    background-color: rgb(220, 233, 255);
+}
+
+.os-description {
+    flex: 2;
+    padding: 0px 10px;
+} 
+
+div.os-content-item {
+    margin: 0px 20px;
+    flex-shrink: 0.5;
+    align-self: center;
+}
+
+.os-content .os-link{
+    margin: 0px;
+    flex-shrink: 0.3;
+    align-self: center;
+    /* border-radius: 5px; */
+    color:#1db94c;
+}
+.os-content .os-link:hover {
+    font-weight: bolder;
+}
+.footer {
+	position: relative;
+	top: auto;
 }
 </style>
